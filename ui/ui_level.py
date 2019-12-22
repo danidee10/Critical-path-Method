@@ -1,4 +1,4 @@
-from PyQt4 import QtCore, QtGui
+from PyQt5 import QtCore, QtGui ,QtWidgets
 
 
 class Ui_Level(object):
@@ -6,9 +6,9 @@ class Ui_Level(object):
         MainWindow.setObjectName("MainWindow")
         MainWindow.resize(1615, 710)
         MainWindow.setStyleSheet("background-color: rgb(63, 63, 63); color: #ffffff;")
-        self.centralwidget = QtGui.QWidget(MainWindow)
+        self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
-        self.estTable = QtGui.QTableWidget(self.centralwidget)
+        self.estTable = QtWidgets.QTableWidget(self.centralwidget)
         self.estTable.setGeometry(QtCore.QRect(20, 50, 1271, 281))
         self.estTable.setStyleSheet("background-color: #ffffff; color: #666;")
         self.estTable.setAlternatingRowColors(True)
@@ -18,7 +18,7 @@ class Ui_Level(object):
         self.estTable.setObjectName("estTable")
         self.estTable.setColumnCount(0)
         self.estTable.setRowCount(0)
-        self.lstTable = QtGui.QTableWidget(self.centralwidget)
+        self.lstTable = QtWidgets.QTableWidget(self.centralwidget)
         self.lstTable.setGeometry(QtCore.QRect(20, 400, 1271, 281))
         self.lstTable.setStyleSheet("background-color: #ffffff; color: #666;")
         self.lstTable.setAlternatingRowColors(True)
@@ -28,7 +28,7 @@ class Ui_Level(object):
         self.lstTable.setObjectName("lstTable")
         self.lstTable.setColumnCount(0)
         self.lstTable.setRowCount(0)
-        self.lstLabel = QtGui.QLabel(self.centralwidget)
+        self.lstLabel = QtWidgets.QLabel(self.centralwidget)
         self.lstLabel.setGeometry(QtCore.QRect(20, 20, 321, 17))
         font = QtGui.QFont()
         font.setFamily("Andale Mono")
@@ -36,7 +36,7 @@ class Ui_Level(object):
         font.setItalic(False)
         self.lstLabel.setFont(font)
         self.lstLabel.setObjectName("lstLabel")
-        self.estLabel = QtGui.QLabel(self.centralwidget)
+        self.estLabel = QtWidgets.QLabel(self.centralwidget)
         self.estLabel.setGeometry(QtCore.QRect(20, 370, 331, 17))
         font = QtGui.QFont()
         font.setFamily("Andale Mono")
@@ -46,11 +46,11 @@ class Ui_Level(object):
         self.estLabel.setFont(font)
         self.estLabel.setObjectName("estLabel")
         MainWindow.setCentralWidget(self.centralwidget)
-        self.menubar = QtGui.QMenuBar(MainWindow)
+        self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 1615, 25))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
-        self.statusbar = QtGui.QStatusBar(MainWindow)
+        self.statusbar = QtWidgets.QStatusBar(MainWindow)
         self.statusbar.setObjectName("statusbar")
         MainWindow.setStatusBar(self.statusbar)
 
@@ -58,6 +58,6 @@ class Ui_Level(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(QtGui.QApplication.translate("MainWindow", "Resource Loading", None, QtGui.QApplication.UnicodeUTF8))
-        self.lstLabel.setText(QtGui.QApplication.translate("MainWindow", "RESOURCE LOADING FOR THE EST", None, QtGui.QApplication.UnicodeUTF8))
-        self.estLabel.setText(QtGui.QApplication.translate("MainWindow", "RESOURCE LOADING FOR THE LST", None, QtGui.QApplication.UnicodeUTF8))
+        MainWindow.setWindowTitle(QtWidgets.QApplication.translate("MainWindow", "Resource Loading", None))
+        self.lstLabel.setText(QtWidgets.QApplication.translate("MainWindow", "RESOURCE LOADING FOR THE EST", None))
+        self.estLabel.setText(QtWidgets.QApplication.translate("MainWindow", "RESOURCE LOADING FOR THE LST", None))

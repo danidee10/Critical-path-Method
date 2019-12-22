@@ -13,7 +13,7 @@ class BasicMethodTests(unittest.TestCase):
 
     def setUp(self):
         self.all_activities = [A, B, C, D, E]
-        self.starting_nodes = criticalPath.get_starting_nodes(self)
+        self.starting_nodes = CriticalPath.get_starting_nodes(self)
 
     def test_get_starting_nodes(self):
         self.assertEqual([A], self.starting_nodes)

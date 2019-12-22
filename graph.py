@@ -103,9 +103,11 @@ class DrawGraph:
         graph.graph_attr['rankdir'] = 'LR'
         unlabelled_edges = self.generate_paths(all_paths)
         labelled_edges = self.label_graph(unlabelled_edges)
-        print(labelled_edges)
         graphviz_path = self.add_edges(graph, labelled_edges)
-        graphviz_path.render('graphs/network_diagram')
+        graphviz_path.render("graphs/network_diagram",view=True)
+
+
+
 
 if __name__ == '__main__':
     main()

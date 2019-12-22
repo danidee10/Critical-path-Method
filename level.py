@@ -1,9 +1,9 @@
 from ui.ui_level import Ui_Level, QtGui, QtCore
-
+from PyQt5 import  QtWidgets
 __author__ = 'danidee'
 
 
-class Level(QtGui.QMainWindow):
+class Level(QtWidgets.QMainWindow):
 
     def __init__(self, parent=None):
         super().__init__(parent)
@@ -74,18 +74,18 @@ class Level(QtGui.QMainWindow):
         row_count = self.level_ui.estTable.rowCount()
 
         for row in range(row_count - 1):
-            item = QtGui.QTableWidgetItem(str(activity_id[row]))
+            item = QtWidgets.QTableWidgetItem(str(activity_id[row]))
             self.level_ui.estTable.setVerticalHeaderItem(row, item)
 
         for row in range(row_count - 1):
-            item = QtGui.QTableWidgetItem(str(activity_id[row]))
+            item = QtWidgets.QTableWidgetItem(str(activity_id[row]))
             self.level_ui.lstTable.setVerticalHeaderItem(row, item)
 
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.level_ui.estTable.setVerticalHeaderItem(row_count-1, item)
         self.level_ui.estTable.verticalHeaderItem(row_count-1).setText('Total')
 
-        item = QtGui.QTableWidgetItem()
+        item = QtWidgets.QTableWidgetItem()
         self.level_ui.lstTable.setVerticalHeaderItem(row_count-1, item)
         self.level_ui.lstTable.verticalHeaderItem(row_count-1).setText('Total')
 
@@ -93,12 +93,12 @@ class Level(QtGui.QMainWindow):
             while len(activity[0]) < project_duration:
                 activity[0].append('0')
             for column, value in enumerate(activity[0]):
-                item = QtGui.QTableWidgetItem(str(value))
+                item = QtWidgets.QTableWidgetItem(str(value))
                 item.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.level_ui.estTable.setItem(row, column, item)
 
         for column, value in enumerate(result[0]):
-            item = QtGui.QTableWidgetItem(str(value))
+            item = QtWidgets.QTableWidgetItem(str(value))
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             row = len(activity_level)
             self.level_ui.estTable.setItem(row, column, item)
@@ -109,12 +109,12 @@ class Level(QtGui.QMainWindow):
             while len(activity[1]) < project_duration:
                 activity[1].append('0')
             for column, value in enumerate(activity[1]):
-                item = QtGui.QTableWidgetItem(str(value))
+                item = QtWidgets.QTableWidgetItem(str(value))
                 item.setFlags(QtCore.Qt.ItemIsEnabled)
                 self.level_ui.lstTable.setItem(row, column, item)
 
         for column, value in enumerate(result[1]):
-            item = QtGui.QTableWidgetItem(str(value))
+            item = QtWidgets.QTableWidgetItem(str(value))
             item.setFlags(QtCore.Qt.ItemIsEnabled)
             row = len(activity_level)
             self.level_ui.lstTable.setItem(row, column, item)
