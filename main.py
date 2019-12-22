@@ -2,11 +2,13 @@ import os
 import sys
 import ctypes
 import time
-from paths import CriticalPath, QtGui
+from paths import CriticalPath
+from PyQt5 import QtGui,QtWidgets
+
 
 
 def main():
-    app = QtGui.QApplication(sys.argv)
+    app = QtWidgets.QApplication(sys.argv)
     app.setWindowIcon(QtGui.QIcon('img/icon.png'))
     if os.name == 'nt':
         # This is needed to display the app icon on the taskbar on Windows 7,8 and 10
@@ -14,7 +16,7 @@ def main():
         ctypes.windll.shell32.SetCurrentProcessExplicitAppUserModelID(myappid)
             
     pixmap = QtGui.QPixmap('img/splash.png')
-    splash = QtGui.QSplashScreen(pixmap)
+    splash = QtWidgets.QSplashScreen(pixmap)
     splash.show()
     app.processEvents()
     time.sleep(3)

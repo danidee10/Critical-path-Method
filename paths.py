@@ -1,9 +1,10 @@
 import sys
 from itertools import zip_longest
 
-from ui.ui_paths import Ui_MainWindow, QtGui
+from ui.ui_paths import Ui_MainWindow, QtGui ,QtWidgets
 from level import Level
 from graph import DrawGraph
+
 
 __author__ = 'danidee'
 
@@ -25,7 +26,7 @@ class Activity:
         return self.id
 
 
-class CriticalPath(QtGui.QMainWindow):
+class CriticalPath(QtWidgets.QMainWindow):
     """
     Gets the the critical path and total duration for a set of activities in a project, it this class
     also gets all the possible paths in the project
@@ -53,10 +54,10 @@ class CriticalPath(QtGui.QMainWindow):
         self.ui.addRowButton.clicked.connect(self.add_row)
         self.ui.delRowButton.clicked.connect(self.del_row)
         self.ui.viewResourceButton.clicked.connect(self.start_resource_loading)
-        self.actionHelp = QtGui.QAction('Help', self, statusTip="Help and Docs", triggered=self.help)
+        self.actionHelp = QtWidgets.QAction('Help', self, statusTip="Help and Docs", triggered=self.help)
         self.actionHelp.setObjectName("actionHelp")
         self.ui.menubar.addAction(self.actionHelp)
-        self.actionAbout = QtGui.QAction('About', self, statusTip="About Maven", triggered=self.about)
+        self.actionAbout = QtWidgets.QAction('About', self, statusTip="About Maven", triggered=self.about)
         self.actionAbout.setObjectName("actionAbout")
         self.ui.menubar.addAction(self.actionAbout)
 
@@ -77,13 +78,13 @@ class CriticalPath(QtGui.QMainWindow):
         Displays a simple about dialog when the about button is clicked
         :return: None
         """
-        QtGui.QMessageBox.about(self, "About Maven", "Maven Version 1.0\nAuthor: Osaetin Daniel")
+        QtWidgets.QMessageBox.about(self, "About Maven", "Maven Version 1.0\nAuthor: Osaetin Daniel")
 
     def help(self):
         """ Display Help Information when the help button is clicked
         :return: None
         """
-        QtGui.QMessageBox.about(self, "Help and Docs", "Documentation is available online\nat www.github.com")
+        QtWidgets.QMessageBox.about(self, "Help and Docs", "Documentation is available online\nat www.github.com")
 
     def handle_errors(self, message, details):
         """
@@ -91,7 +92,7 @@ class CriticalPath(QtGui.QMainWindow):
         :param details: Detailed error message to be displayed
         :return: None
         """
-        msgbox = QtGui.QMessageBox()
+        msgbox = QtWidgets.QMessageBox()
         msgbox.setWindowTitle('Error!')
         msgbox.setText(message)
         msgbox.setDetailedText(details)
@@ -105,7 +106,7 @@ class CriticalPath(QtGui.QMainWindow):
         :return: None
         """
         while True:
-            num_rows, ok = QtGui.QInputDialog.getInteger(self, 'Input activity number', 'How many activities are involved?:')
+            num_rows, ok = QtWidgets.QInputDialog.getInt(self, 'Input activity number', 'How many activities are involved?:')
             if ok:
                     if num_rows < 2 :
                         self.handle_errors('{} is not a valid activity number'.format(num_rows), 'Please enter a valid number')
@@ -326,14 +327,15 @@ class CriticalPath(QtGui.QMainWindow):
 
         for count, (est, lst) in enumerate(zip(ests, lsts)):
             if est % 1 == 0.0:
-                est_string = QtGui.QTableWidgetItem(str(int(est)))
+                est_string = QtWidgets.QTableWidgetItem(str(int(est)))
                 self.ui.tableWidget.setItem(count, 5, est_string)
 
             if lst % 1 == 0.0:
-                lst_string = QtGui.QTableWidgetItem(str(int(lst)))
+                lst_string = QtWidgets.QTableWidgetItem(str(int(lst)))
                 self.ui.tableWidget.setItem(count, 6, lst_string)
 
     def display_graph_and_labels(self, visual_path, project_duration):
+        print("Display Graph And Label")
         self.ui.scrollArea.setStyleSheet('background-color: #ffffff')
         self.ui.criticalPathLabel.setWordWrap(True)
         self.ui.projectDurationLabel.setWordWrap(True)
@@ -354,7 +356,6 @@ class CriticalPath(QtGui.QMainWindow):
         return nested_list
 
     def find_paths(self):
-
         all_activities = self.get_properties()  # gets all the activities and puts them into self.all_activities
         if self.progress == 'Yes':
             starting_nodes = self.get_starting_nodes(all_activities)
@@ -364,7 +365,9 @@ class CriticalPath(QtGui.QMainWindow):
             all_paths = self.build_graph(all_activities, starting_nodes, result)
 
             # if all_path is not empty then print all the possible paths in the project
+
             if all_paths is not None:
+
                 print('The possible paths in the project are')
                 for i in all_paths:
                     print('==>'.join(str(a.id) for a in i))
@@ -392,9 +395,13 @@ class CriticalPath(QtGui.QMainWindow):
                 # Draw the Network Diagram
                 graph = DrawGraph()
                 graph.draw(all_paths)
-
                 self.display_graph_and_labels(visual_path, self.project_duration)
+
+
+
+
             else:
+
                 print('There was a problem calculating the critical path')
 
             # --------------All the calculations for the resource levelling class----------------#
